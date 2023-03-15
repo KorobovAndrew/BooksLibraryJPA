@@ -5,16 +5,20 @@ import ru.andrewtest.bookslibrary.factories.BookDtoFactory;
 import ru.andrewtest.bookslibrary.forms.BookDto1;
 import ru.andrewtest.bookslibrary.forms.BookDto2;
 import ru.andrewtest.bookslibrary.models.Book;
+import ru.andrewtest.bookslibrary.models.Person;
 import ru.andrewtest.bookslibrary.repositories.BookRepository;
+import ru.andrewtest.bookslibrary.repositories.PersonRepository;
 
 import java.util.List;
 
 @Component
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+    private final PersonRepository personRepository;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, PersonRepository personRepository) {
         this.bookRepository = bookRepository;
+        this.personRepository = personRepository;
     }
 
     @Override
@@ -27,28 +31,39 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(String title, String author, Integer yearOfWriting) {
-        bookRepository.addBook(title, author, yearOfWriting);
+        Book book = Book.builder()
+                .title(title)
+                .author(author)
+                .yearOfWriting(yearOfWriting)
+                .build();
+        bookRepository.save(book);
     }
 
     @Override
     public Book findBookById(int bookId) {
-        return bookRepository.findBookById(bookId);
+        return bookRepository.getReferenceById(bookId);
     }
 
     @Override
     public BookDto1 findBookDto1ById(int bookId) {
-        Book book = bookRepository.findBookById(bookId);
+        Book book = bookRepository.getReferenceById(bookId);
         return BookDtoFactory.createBookDto1(book);
     }
 
     @Override
     public void updateBook(String title, String author, Integer yearOfWriting, int bookId) {
-        bookRepository.updateBook(title, author, yearOfWriting, bookId);
+        Book book = Book.builder()
+                .title(title)
+                .author(author)
+                .yearOfWriting(yearOfWriting)
+                .id(bookId)
+                .build();
+        bookRepository.save(book);
     }
 
     @Override
     public void deleteBookById(int bookId) {
-        bookRepository.deleteBookById(bookId);
+        bookRepository.deleteById(bookId);
     }
 
     @Override
@@ -61,11 +76,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteLinkOnPerson(int bookId) {
-        bookRepository.deleteLinkOnPerson(bookId);
+        Book book = bookRepository.getReferenceById(bookId);
+        book.setPerson(null);
+        bookRepository.save(book);
     }
 
     @Override
     public void updateBorrowerId(String newBorrower, int bookId) {
-        bookRepository.updateBorrowerId(newBorrower, bookId);
+        Book book = bookRepository.findById(bookId).orElse(null);
+        Person person = personRepository.findByFullName(newBorrower);
+        book.setPerson(person);
+        bookRepository.save(book);
     }
 }

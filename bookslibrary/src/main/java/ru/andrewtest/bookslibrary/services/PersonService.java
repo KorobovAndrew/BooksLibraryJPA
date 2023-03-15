@@ -14,8 +14,6 @@ public interface PersonService {
 
     Person findPersonById(int personId);
 
-    PersonDto2 findPersonDto2ById(Integer personId);
-
     void updatePerson(int personId, String fullName, Integer yearOfBirth);
 
     void deletePerson(int personId);

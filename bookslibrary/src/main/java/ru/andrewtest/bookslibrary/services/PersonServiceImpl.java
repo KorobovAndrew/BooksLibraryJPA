@@ -24,32 +24,33 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void addPerson(String fullName, Integer yearOfBirth) {
-        personRepository.addPerson(fullName, yearOfBirth);
+        Person person = Person.builder()
+                .fullName(fullName)
+                .yearOfBirth(yearOfBirth)
+                .build();
+        personRepository.save(person);
     }
 
     @Override
     public Person findPersonById(int personId) {
-        if (personId == 0)
-            return null;
-        return personRepository.findPersonById(personId);
-    }
-
-    @Override
-    public PersonDto2 findPersonDto2ById(Integer personId) {
-        if (personId == 0)
-            return null;
-        Person person = personRepository.findPersonById(personId);
-        return PersonDtoFactory.createPersonDto2(person);
+//        if (personId == 0)
+//            return null;
+        return personRepository.findById(personId).orElse(null);
     }
 
     @Override
     public void updatePerson(int personId, String fullName, Integer yearOfBirth) {
-        personRepository.updatePerson(personId, fullName, yearOfBirth);
+        Person person = Person.builder()
+                .id(personId)
+                .fullName(fullName)
+                .yearOfBirth(yearOfBirth)
+                .build();
+        personRepository.save(person);
     }
 
     @Override
     public void deletePerson(int personId) {
-        personRepository.deletePerson(personId);
+        personRepository.deleteById(personId);
     }
 
     @Override

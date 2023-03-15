@@ -4,3 +4,8 @@ spring:
     username: ${postgre_username}
     password: ${postgre_password}
     url: jdbc:postgresql://localhost:5432/books_library
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

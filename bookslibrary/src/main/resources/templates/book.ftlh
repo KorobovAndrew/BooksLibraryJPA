@@ -10,7 +10,7 @@
 <body>
 <div>${book.title}, ${book.author}, #{book.yearOfWriting}</div>
 <br>
-<#if book.borrowerId == 0>
+<#if book.person.equals()>
     <div>Эта книга свободна. Кому её назначить?</div>
     <div>Выберите человека</div>
     <form action="/books/${book.id}/updateBorrower" method="post">

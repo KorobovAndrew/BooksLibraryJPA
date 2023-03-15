@@ -3,6 +3,7 @@ package ru.andrewtest.bookslibrary.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.andrewtest.bookslibrary.factories.PersonDtoFactory;
 import ru.andrewtest.bookslibrary.forms.BookDto1;
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
 import ru.andrewtest.bookslibrary.forms.PersonDto2;
@@ -58,7 +59,7 @@ public class BookController {
     public String getBookPage(Model model, @PathVariable("book-id") int bookId) {
         Book book = bookService.findBookById(bookId);
         List<PersonDto1> people = personService.findAllPersonDto1();
-        PersonDto2 person= personService.findPersonDto2ById(book.getBorrowerId());
+        PersonDto2 person= PersonDtoFactory.createPersonDto2(book.getPerson());
         model.addAttribute("book", book);
         model.addAttribute("borrower", person);
         model.addAttribute("people", people);
