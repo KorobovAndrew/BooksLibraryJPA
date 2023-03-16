@@ -13,14 +13,18 @@ import java.util.List;
 @Entity
 @Table(name = "person")
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
+
     @Column(name = "full_name")
     private String fullName;
+
     @Column(name = "year_of_birth")
     private Integer yearOfBirth;
-    @OneToMany(mappedBy = "person") //указываем поле класса Book? не колонку в таблице?
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY) // FetchType.LAZY по дефолту
     List<Book> books;
 }

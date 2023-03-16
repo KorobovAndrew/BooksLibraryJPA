@@ -11,10 +11,4 @@ public class PersonDtoFactory {
                 .yearOfBirth(person.getYearOfBirth())
                 .build();
     }
-
-    public static PersonDto2 createPersonDto2(Person person) {
-        return PersonDto2.builder()
-                .fullName(person.getFullName())
-                .build();
-    }
 }

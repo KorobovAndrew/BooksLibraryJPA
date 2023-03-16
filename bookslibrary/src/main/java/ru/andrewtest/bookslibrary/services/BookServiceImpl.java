@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.andrewtest.bookslibrary.factories.BookDtoFactory;
 import ru.andrewtest.bookslibrary.forms.BookDto1;
 import ru.andrewtest.bookslibrary.forms.BookDto2;
+import ru.andrewtest.bookslibrary.forms.BookDto3;
 import ru.andrewtest.bookslibrary.models.Book;
 import ru.andrewtest.bookslibrary.models.Person;
 import ru.andrewtest.bookslibrary.repositories.BookRepository;
@@ -51,6 +52,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public BookDto3 findBookDto3ById(int bookId) {
+        Book book = bookRepository.getReferenceById(bookId);
+        return BookDtoFactory.createBookDto3(book);
+    }
+
+    @Override
     public void updateBook(String title, String author, Integer yearOfWriting, int bookId) {
         Book book = Book.builder()
                 .title(title)
@@ -67,8 +74,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto2> findAllBookDto2ByPersonId(int personId) {
-        List<Book> books = bookRepository.findBooksByPersonId(personId);
+    public List<BookDto2> findAllBookDto2ByPersonId(Person person) {
+        List<Book> books = person.getBooks();
         return books.stream()
                 .map(BookDtoFactory::createBookDto2)
                 .toList();

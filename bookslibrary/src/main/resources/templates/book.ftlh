@@ -10,21 +10,21 @@
 <body>
 <div>${book.title}, ${book.author}, #{book.yearOfWriting}</div>
 <br>
-<#if book.person.equals()>
+<#if book.personFullName?has_content>
+    <div>Книга сейчас у: ${book.personFullName}</div>
+    <form method="post" action="/books/${book.id}/free-up">
+        <button>Освободить книгу</button>
+    </form>
+<#else>
     <div>Эта книга свободна. Кому её назначить?</div>
     <div>Выберите человека</div>
     <form action="/books/${book.id}/updateBorrower" method="post">
         <select name="newBorrower">
-                <#list people as person>
-                    <option>${person.fullName}</option>
-                </#list>
-            </select>
+            <#list people as person>
+                <option>${person.fullName}</option>
+            </#list>
+        </select>
         <p><input type="submit" value="Назначить книгу"></p>
-    </form>
-<#else>
-    <div>Книга сейчас у: ${borrower.fullName}</div>
-    <form method="post" action="/books/${book.id}/free-up">
-        <button>Освободить книгу</button>
     </form>
 </#if>
 <hr>

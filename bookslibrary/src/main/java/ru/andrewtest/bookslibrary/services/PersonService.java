@@ -1,22 +1,21 @@
 package ru.andrewtest.bookslibrary.services;
 
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
-import ru.andrewtest.bookslibrary.forms.PersonDto2;
 import ru.andrewtest.bookslibrary.models.Person;
 
 import java.util.List;
 
 public interface PersonService {
 
-    List<Person> findAllPeople();
+    List<Person> findAll();
 
-    void addPerson(String fullName, Integer yearOfBirth);
+    void save(String fullName, Integer yearOfBirth);
 
-    Person findPersonById(int personId);
+    Person findById(int personId);
 
-    void updatePerson(int personId, String fullName, Integer yearOfBirth);
+    void update(int personId, String fullName, Integer yearOfBirth);
 
-    void deletePerson(int personId);
+    void delete(int personId);
 
     List<PersonDto1> findAllPersonDto1();
 }

@@ -18,12 +18,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findAllPeople() {
+    public List<Person> findAll() {
         return personRepository.findAll();
     }
 
     @Override
-    public void addPerson(String fullName, Integer yearOfBirth) {
+    public void save(String fullName, Integer yearOfBirth) {
         Person person = Person.builder()
                 .fullName(fullName)
                 .yearOfBirth(yearOfBirth)
@@ -32,14 +32,14 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findPersonById(int personId) {
+    public Person findById(int personId) {
 //        if (personId == 0)
 //            return null;
         return personRepository.findById(personId).orElse(null);
     }
 
     @Override
-    public void updatePerson(int personId, String fullName, Integer yearOfBirth) {
+    public void update(int personId, String fullName, Integer yearOfBirth) {
         Person person = Person.builder()
                 .id(personId)
                 .fullName(fullName)
@@ -49,7 +49,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void deletePerson(int personId) {
+    public void delete(int personId) {
         personRepository.deleteById(personId);
     }
 

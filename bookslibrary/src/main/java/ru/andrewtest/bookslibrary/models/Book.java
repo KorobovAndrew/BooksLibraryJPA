@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import javax.print.attribute.standard.MediaSize;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class Book {
     @Column(name = "year_of_writing")
     private Integer yearOfWriting;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) //FetchType.EAGER по дефолту
     @JoinColumn(name = "borrower_id")
     Person person;
 }

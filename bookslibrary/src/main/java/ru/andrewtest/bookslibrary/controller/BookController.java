@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.andrewtest.bookslibrary.factories.PersonDtoFactory;
 import ru.andrewtest.bookslibrary.forms.BookDto1;
+import ru.andrewtest.bookslibrary.forms.BookDto3;
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
 import ru.andrewtest.bookslibrary.forms.PersonDto2;
 import ru.andrewtest.bookslibrary.models.Book;
@@ -57,11 +58,9 @@ public class BookController {
 
     @GetMapping("/{book-id}")
     public String getBookPage(Model model, @PathVariable("book-id") int bookId) {
-        Book book = bookService.findBookById(bookId);
+        BookDto3 book = bookService.findBookDto3ById(bookId);
         List<PersonDto1> people = personService.findAllPersonDto1();
-        PersonDto2 person= PersonDtoFactory.createPersonDto2(book.getPerson());
         model.addAttribute("book", book);
-        model.addAttribute("borrower", person);
         model.addAttribute("people", people);
         return "book";
     }

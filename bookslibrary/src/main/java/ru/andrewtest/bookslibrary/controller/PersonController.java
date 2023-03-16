@@ -24,7 +24,7 @@ public class PersonController {
 
     @GetMapping
     public String getPeople(Model model) {
-        List<Person> people = personService.findAllPeople();
+        List<Person> people = personService.findAll();
         model.addAttribute("people", people);
         return "people";
     }
@@ -32,13 +32,13 @@ public class PersonController {
     @PostMapping("/new")
     public String addPerson(@RequestParam("fullName") String fullName,
                             @RequestParam("yearOfBirth") Integer yearOfBirth) {
-        personService.addPerson(fullName, yearOfBirth);
+        personService.save(fullName, yearOfBirth);
         return "redirect:/people";
     }
 
     @GetMapping("/{person-id}/edit")
     public String getPersonEditingPage(Model model, @PathVariable("person-id") int personId) {
-        Person person = personService.findPersonById(personId);
+        Person person = personService.findById(personId);
         model.addAttribute("person", person);
         return "person_editing";
     }
@@ -47,14 +47,14 @@ public class PersonController {
     public String editPerson(@PathVariable("person-id") int personId,
                              @RequestParam("fullName") String fullName,
                              @RequestParam("yearOfBirth") Integer yearOfBirth) {
-        personService.updatePerson(personId, fullName, yearOfBirth);
+        personService.update(personId, fullName, yearOfBirth);
         return "redirect:/people";
     }
 
     @GetMapping("/{person-id}")
     public String getPersonPage(Model model, @PathVariable("person-id") int personId) {
-        Person person = personService.findPersonById(personId);
-        List<BookDto2> books = bookService.findAllBookDto2ByPersonId(personId);
+        Person person = personService.findById(personId);
+        List<BookDto2> books = bookService.findAllBookDto2ByPersonId(person);
         model.addAttribute("person", person);
         model.addAttribute("books", books);
         return "person";
@@ -62,7 +62,7 @@ public class PersonController {
 
     @PostMapping("/{person-id}/delete")
     public String deletePerson(@PathVariable("person-id") int personId) {
-        personService.deletePerson(personId);
+        personService.delete(personId);
         return "redirect:/people";
     }
 }
