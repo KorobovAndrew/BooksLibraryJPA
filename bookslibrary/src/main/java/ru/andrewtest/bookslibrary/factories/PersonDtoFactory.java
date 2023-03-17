@@ -1,7 +1,6 @@
 package ru.andrewtest.bookslibrary.factories;
 
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
-import ru.andrewtest.bookslibrary.forms.PersonDto2;
 import ru.andrewtest.bookslibrary.models.Person;
 
 public class PersonDtoFactory {

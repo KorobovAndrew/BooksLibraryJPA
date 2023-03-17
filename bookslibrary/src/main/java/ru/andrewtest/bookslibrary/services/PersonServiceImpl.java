@@ -3,7 +3,6 @@ package ru.andrewtest.bookslibrary.services;
 import org.springframework.stereotype.Component;
 import ru.andrewtest.bookslibrary.factories.PersonDtoFactory;
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
-import ru.andrewtest.bookslibrary.forms.PersonDto2;
 import ru.andrewtest.bookslibrary.models.Person;
 import ru.andrewtest.bookslibrary.repositories.PersonRepository;
 

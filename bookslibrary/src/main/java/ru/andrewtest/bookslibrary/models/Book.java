@@ -3,9 +3,6 @@ package ru.andrewtest.bookslibrary.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.print.attribute.standard.MediaSize;
-import java.util.Optional;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

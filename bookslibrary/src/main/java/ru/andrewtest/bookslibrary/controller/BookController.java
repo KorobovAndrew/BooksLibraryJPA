@@ -3,12 +3,9 @@ package ru.andrewtest.bookslibrary.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.andrewtest.bookslibrary.factories.PersonDtoFactory;
 import ru.andrewtest.bookslibrary.forms.BookDto1;
 import ru.andrewtest.bookslibrary.forms.BookDto3;
 import ru.andrewtest.bookslibrary.forms.PersonDto1;
-import ru.andrewtest.bookslibrary.forms.PersonDto2;
-import ru.andrewtest.bookslibrary.models.Book;
 import ru.andrewtest.bookslibrary.services.BookService;
 import ru.andrewtest.bookslibrary.services.PersonService;
 
