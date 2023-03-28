@@ -32,8 +32,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person findById(int personId) {
-//        if (personId == 0)
-//            return null;
         return personRepository.findById(personId).orElse(null);
     }
 
