@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BooksLibraryJdbc.iml" filepath="$PROJECT_DIR$/.idea/BooksLibraryJdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BooksLibraryJPA.iml" filepath="$PROJECT_DIR$/.idea/BooksLibraryJPA.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookslibrary/bookslibrary.iml" filepath="$PROJECT_DIR$/bookslibrary/bookslibrary.iml" />
     </modules>
   </component>
